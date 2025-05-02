@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { EffectCards } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Parallax, Pagination, Navigation } from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css";
@@ -55,7 +54,7 @@ function Home() {
   };
 
   return (
-    <div className="w-full h-screen h-fit flex justify-center items-center relative z-20">
+    <div className="w-full min-h-screen h-fit flex justify-center items-center relative z-20">
       {isLoading ? (
         <div className="flex flex-col justify-center items-center mt-10 gap-4 ">
           <AiOutlineLoading3Quarters className="text-white animate-spin ease-in-out" />
@@ -97,10 +96,12 @@ function Home() {
           </h1>
           <Swiper
             speed={600}
-            style={{
-              "--swiper-navigation-color": "#fff",
-              "--swiper-pagination-color": "#fff",
-            }}
+            style={
+              {
+                "--swiper-navigation-color": "#fff",
+                "--swiper-pagination-color": "#fff",
+              } as React.CSSProperties
+            }
             pagination={{
               clickable: true,
             }}

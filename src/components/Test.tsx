@@ -6,8 +6,13 @@ import "swiper/css/pagination";
 import { EffectFade, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Vilain from "./Vilain";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+
+interface ResponseItem {
+  question: string;
+  userResponse: string;
+  link: string;
+}
 
 function Test() {
   const [vilao, setVilao] = useState<string>("");
@@ -16,7 +21,7 @@ function Test() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [searched, setSearched] = useState<boolean>(false);
-  const [responses, setResponses] = useState<object[]>([
+  const [responses, setResponses] = useState<ResponseItem[]>([
     {
       question: "Qual o seu tipo de lugar favorito?",
       userResponse: "Um porão escuro e silencioso, longe de tudo.",
@@ -100,7 +105,7 @@ function Test() {
     setIsLoading(true);
     setSearched(false);
 
-    const formated_responses: string[] = responses.map((response, index) => {
+    const formated_responses: string[] = responses.map((response) => {
       return `Question = ${response.question} | User Response: ${response.userResponse}`;
     });
 
@@ -151,10 +156,12 @@ function Test() {
             pagination={{
               clickable: true,
             }}
-            style={{
-              "--swiper-navigation-color": "#fff",
-              "--swiper-pagination-color": "#fff",
-            }}
+            style={
+              {
+                "--swiper-navigation-color": "#fff",
+                "--swiper-pagination-color": "#fff",
+              } as React.CSSProperties
+            }
             modules={[EffectFade, Navigation, Pagination]}
             className="mySwiper !h-[60vh] !w-[90%] mt-5 shadow-2xl font-garamond"
           >

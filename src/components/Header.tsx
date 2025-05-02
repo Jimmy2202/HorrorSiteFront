@@ -1,5 +1,5 @@
 import { LuGhost } from "react-icons/lu";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const navigate = useNavigate();

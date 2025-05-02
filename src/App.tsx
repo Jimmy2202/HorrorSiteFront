@@ -1,10 +1,5 @@
 import "./index.css";
-import {
-  Navigate,
-  Route,
-  BrowserRouter as Router,
-  Routes,
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./components/Home";
 import Test from "./components/Test";
