@@ -33,7 +33,7 @@ function Home() {
     const fetchMovies = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch("http://localhost:5000/api/movies");
+        const response = await fetch("https://horrorsitebackend.onrender.com/api/movies");
         const data: DataMovies[] = await response.json();
         setMovies(data);
         setIsLoading(false);

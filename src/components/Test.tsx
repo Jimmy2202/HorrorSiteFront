@@ -101,7 +101,7 @@ function Test() {
   };
 
   const prompt = async () => {
-    const url = "http://localhost:5000/api/analyzeresponse";
+    const url = "https://horrorsitebackend.onrender.com/api/analyzeresponse";
     setIsLoading(true);
     setSearched(false);
 
