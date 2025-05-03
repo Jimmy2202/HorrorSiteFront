@@ -210,7 +210,7 @@ function Test2() {
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
-                  className="w-full h-full flex justify-center items-center flex-col gap-3"
+                  className="w-full h-full p-2 flex text-center justify-center items-center flex-col gap-3"
                 >
                   <h1 className="text-white">{response.question}</h1>
                   <input
