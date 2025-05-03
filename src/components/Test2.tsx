@@ -5,8 +5,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { EffectFade, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Vilain from "./Vilain";
 import { useNavigate } from "react-router-dom";
+import Movie from "./Movie";
 
 interface ResponseItem {
   question: string;
@@ -14,161 +14,102 @@ interface ResponseItem {
   link: string;
 }
 
-function Test() {
-  const [vilao, setVilao] = useState<string>("");
+interface DataMovies {
+  title: string;
+  overview: string;
+  poster_path: string;
+}
+
+function Test2() {
   const [motivo, setMotivo] = useState<string>("");
-  const [link, setLink] = useState<string>("");
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [searched, setSearched] = useState<boolean>(false);
+  const [movie, setMovie] = useState<DataMovies>({
+    title: "",
+    overview: "",
+    poster_path: "",
+  });
   const [responses, setResponses] = useState<ResponseItem[]>([
     {
-      question: "Qual o seu tipo de lugar favorito?",
+      question:
+        "Que tipo de ambiente te transmite paz… mesmo que a maioria o considerasse perturbador?",
       userResponse: "Um porão escuro e silencioso, longe de tudo.",
       link: "https://i.imgur.com/IMvNAyp.jpeg",
     },
     {
-      question: "Se você fosse um vilão, qual poder (e/ou) arma teria?",
+      question:
+        "Se você tivesse um dom sobrenatural sombrio, qual seria e como o usaria sem ser notado?",
       userResponse: "Telecinese e lâminas ocultas.",
       link: "https://i.imgur.com/F6xB0Ov.jpeg",
     },
     {
-      question: "Qual seu maior medo?",
+      question:
+        "Qual é o tipo de medo que te paralisa mesmo quando está seguro?",
       userResponse: "O som de passos atrás de mim quando estou sozinho.",
       link: "https://i.imgur.com/msZ4TRP.jpeg",
     },
     {
-      question: "Pelo o quê suas vítimas teriam que temer?",
+      question:
+        "Se fosse uma entidade do medo, o que seria sua assinatura? O que te tornaria inesquecível para quem te viu?",
       userResponse: "Elas nunca me veriam chegando. Só o silêncio.",
       link: "https://i.imgur.com/Cw5GWM1.jpeg",
     },
     {
       question:
-        "Se alguém te traísse profundamente, o quê você faria com essa pessoa?",
+        "A traição deixa marcas. Se alguém te ferisse fundo, como essa pessoa desapareceria da sua história?",
       userResponse:
         "Faria ela desaparecer sem deixar rastro. Frio e calculado.",
       link: "https://i.imgur.com/lv7R1Dy.jpeg",
     },
     {
       question:
-        "Se você pudesse desaparecer com algúem no mundo sem deixar vestígios, quem seria e por quê?",
+        "Se tivesse o poder de apagar alguém da realidade, quem seria e qual seria sua justificativa sombria?",
       userResponse: "Meu antigo chefe. Ninguém sentiria falta.",
       link: "https://i.imgur.com/IMvNAyp.jpeg",
     },
     {
       question:
-        "O quê existe de mais sombrio dentro de você e ninguém conhece?",
+        "Existe algo dentro de você que nunca foi revelado... algo obscuro demais para colocar em palavras?",
       userResponse: "Às vezes imagino como seria viver sem empatia.",
       link: "https://i.imgur.com/J2Q69to.jpeg",
     },
     {
-      question: "Você já sentiu prazer em fazer algo errado?",
+      question:
+        "O erro pode ser doce. Conte uma vez em que fazer o errado foi... deliciosamente satisfatório.",
       userResponse: "Sim, principalmente quando senti que era merecido.",
       link: "https://i.imgur.com/RLj3Dru.jpeg",
     },
     {
       question:
-        "Agora imagine que você está sendo observado. Quem (ou o quê) você acha que está te observando?",
+        "Imagine agora que você está sendo vigiado. Quem — ou o quê — seria capaz de seguir seus passos desde a infância?",
       userResponse: "Uma entidade que sempre esteve comigo desde criança.",
       link: "https://i.imgur.com/lv7R1Dy.jpeg",
     },
     {
-      question: "Qual sua lembrança mais estranha ou perturbadora?",
+      question:
+        "Qual memória da sua vida parece ter vindo de outro plano, como se não fosse sua… ou real?",
       userResponse:
         "Acordei e todos ao meu redor estavam imóveis, como se o tempo tivesse parado.",
       link: "https://i.imgur.com/HYAHimq.jpeg",
     },
-    {
-      question:
-        "Você está sozinho em uma floresta à noite e encontra uma cabana com a porta entreaberta. O que faz?",
-      userResponse:
-        "Entro sem bater, como se algo lá dentro já estivesse me esperando.",
-      link: "https://i.imgur.com/F6xB0Ov.jpeg",
-    },
-    {
-      question:
-        "Se você pudesse ouvir os pensamentos de qualquer pessoa, mas isso te enlouquecesse aos poucos, usaria esse poder?",
-      userResponse:
-        "Sim. Prefiro enlouquecer com verdades do que viver na ignorância.",
-      link: "https://i.imgur.com/J2Q69to.jpeg",
-    },
-    {
-      question:
-        "Imagine que alguém te acorda toda noite no mesmo horário com um sussurro. O que você acha que ela quer?",
-      userResponse:
-        "Acho que está tentando me lembrar de algo que escolhi esquecer.",
-      link: "https://i.imgur.com/msZ4TRP.jpeg",
-    },
-    {
-      question:
-        "Se você pudesse viver eternamente, mas preso a uma única casa mal-assombrada, aceitaria?",
-      userResponse:
-        "Sim. Com o tempo, eu me tornaria o fantasma que assombra os outros.",
-      link: "https://i.imgur.com/Cw5GWM1.jpeg",
-    },
-    {
-      question:
-        "O que você faria se percebesse que ninguém mais consegue te ver ou ouvir?",
-      userResponse:
-        "Observava em silêncio... e anotava cada segredo que ouvia.",
-      link: "https://i.imgur.com/HYAHimq.jpeg",
-    },
-    {
-      question: "Qual foi o pesadelo mais vívido que você já teve? Descreva.",
-      userResponse:
-        "Eu caminhava num corredor sem fim. Atrás de mim, algo rastejava e sussurrava meu nome.",
-      link: "https://i.imgur.com/RLj3Dru.jpeg",
-    },
-    {
-      question:
-        "Se fosse condenado a vagar para sempre como um espírito, o que faria nas noites silenciosas?",
-      userResponse:
-        "Sussurraria arrependimentos nos ouvidos de quem tenta dormir em paz.",
-      link: "https://i.imgur.com/IMvNAyp.jpeg",
-    },
-    {
-      question:
-        "Existe alguma música, cheiro ou som que te causa arrepios sem motivo aparente? Qual?",
-      userResponse:
-        "O som de um relógio antigo marcando três da manhã. Sempre três.",
-      link: "https://i.imgur.com/F6xB0Ov.jpeg",
-    },
-    {
-      question:
-        "Se tivesse que esconder um corpo e nunca ser descoberto, onde esconderia e como?",
-      userResponse:
-        "No porão de uma casa abandonada que ninguém ousa entrar. E selaria a entrada com concreto.",
-      link: "https://i.imgur.com/lv7R1Dy.jpeg",
-    },
-    {
-      question:
-        "Você acredita que há algo observando você agora mesmo? Se sim, o que acha que é?",
-      userResponse: "Não sei o que é… mas sei que está atrás da tela.",
-      link: "https://i.imgur.com/J2Q69to.jpeg",
-    },
   ]);
 
-  const fetchImage = async (vilain: string) => {
-    const options: object = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ vilain }),
-    };
-
-    const url = "http://localhost:5000/api/image";
-    try {
-      const data = await fetch(url, options);
-      const response = await data.json();
-      console.log(response);
-      setLink(response);
-    } catch (error) {
-      console.error(error);
-    }
+  const fetchMovie = (filme: string, movies: DataMovies[]) => {
+    movies.forEach((movie) => {
+      console.log(movie);
+      if (movie.title == filme) {
+        console.log(movie);
+        setMovie(movie);
+      }
+    });
   };
 
   const prompt = async () => {
-    const url = "https://horrorsitebackend.onrender.com/api/analyzeresponse";
+    const url = "https://horrorsitebackend.onrender.com/api/analyzeresponse2";
+    const url2 = "https://horrorsitebackend.onrender.com/api/movies";
+    const response = await fetch(url2);
+    const datamovies: DataMovies[] = await response.json();
     setIsLoading(true);
     setSearched(false);
 
@@ -176,11 +117,17 @@ function Test() {
       return `Question = ${response.question} | User Response: ${response.userResponse}`;
     });
 
+    const array_movies: string[] = datamovies.map((movie) => {
+      return `Movie: ${movie.title} | Overview: ${movie.overview}`;
+    });
+
+    const resultfinal: string[] = formated_responses.concat(array_movies);
+
     const options: object = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ formated_responses }),
+      body: JSON.stringify({ resultfinal }),
     };
 
     try {
@@ -188,11 +135,10 @@ function Test() {
       const data_final = await data.json();
       console.log(data_final.message.content);
       const data_final2 = JSON.parse(data_final.message.content);
-      setVilao(data_final2.vilao);
       setMotivo(data_final2.motivo);
+      fetchMovie(data_final2.filme, datamovies);
       setIsLoading(false);
       setSearched(true);
-      await fetchImage(data_final2.vilao);
     } catch (error) {
       navigate("/");
       console.error(error);
@@ -214,7 +160,14 @@ function Test() {
         </div>
       ) : searched ? (
         <div className="w-full h-full flex flex-col gap-5 justify-center items-center">
-          <Vilain name={vilao} reason={motivo} link={link} />
+          <Movie
+            name={movie.title}
+            overview={movie.overview}
+            poster_path={movie.poster_path}
+          />
+          <h1 className="w-[90%] text-center p-4 text-white bg-black/[0.5]">
+            {motivo}
+          </h1>
           <button
             onClick={() => navigate("/")}
             className="hover:scale-105 hover:bg-white hover:text-black transition ease-in-out duration-500 p-5 min-w-[20vw] min-h-[10vh] bg-black text-center text-white"
@@ -247,7 +200,7 @@ function Test() {
               } as React.CSSProperties
             }
             modules={[EffectFade, Navigation, Pagination]}
-            className="mySwiper !h-[60vh] !w-[90%] mt-5 shadow-2xl font-garamond"
+            className="mySwiper !h-[60vh] !w-[90%] mt-5 shadow-xl shadow-black font-garamond"
           >
             {responses.map((response, index) => (
               <SwiperSlide key={index}>
@@ -257,7 +210,7 @@ function Test() {
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
-                  className="w-full h-full flex text-center p-2 justify-center items-center flex-col gap-3"
+                  className="w-full h-full flex justify-center items-center flex-col gap-3"
                 >
                   <h1 className="text-white">{response.question}</h1>
                   <input
@@ -286,4 +239,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default Test2;

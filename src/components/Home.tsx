@@ -33,7 +33,9 @@ function Home() {
     const fetchMovies = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch("https://horrorsitebackend.onrender.com/api/movies");
+        const response = await fetch(
+          "https://horrorsitebackend.onrender.com/api/movies"
+        );
         const data: DataMovies[] = await response.json();
         setMovies(data);
         setIsLoading(false);
@@ -54,7 +56,7 @@ function Home() {
   };
 
   return (
-    <div className="w-full min-h-screen h-fit flex justify-center items-center relative z-20">
+    <div className="w-screen min-h-screen flex justify-center items-center relative z-20">
       {isLoading ? (
         <div className="flex flex-col justify-center items-center mt-10 gap-4 ">
           <AiOutlineLoading3Quarters className="text-white animate-spin ease-in-out" />
@@ -90,9 +92,9 @@ function Home() {
           </button>
         </div>
       ) : (
-        <div className="bg-transparent relative text-white h-screen w-full overflow-x-auto flex flex-col gap-1 justify-start items-center">
-          <h1 className="w-full sm-custom:ml-2 mt-4 p-3 text-center bg-white/[0.5]">
-            Deslize para ver todos os filmes de terror...
+        <div className="relative flex flex-col shadow-2xl sm-custom:h-[80vh] bg-black/[0.3]  shadow-black text-black w-[90vw] sm-custom:mt-10 overflow-x-auto gap-1 justify-start items-center">
+          <h1 className="w-full text-red-300 sm-custom:mr-6 mt-4 p-3 text-center bg-black/[0.5]">
+            Selecione um filme e deslize para o lado para ver o próximo...
           </h1>
           <Swiper
             speed={600}
@@ -108,10 +110,10 @@ function Home() {
             effect={"cards"}
             grabCursor={true}
             modules={[EffectCards]}
-            className="mySwiper !h-full !w-[30vw] sm-custom:!w-[70%] sm-custom:mt-10 left-0 top-28 !rounded-2xl"
+            className="mySwiper overflow-hidden !max-h-[100vh] !w-[30vw] sm-custom:!w-[40vw] sm-custom:mt-10 top-28 !rounded-2xl"
           >
             {movies.map((movies, index) => (
-              <SwiperSlide className="!h-fit !w-full !relative rounded-2xl border">
+              <SwiperSlide className="!h-full !w-full !relative rounded-2xl border">
                 <div
                   key={index}
                   style={{
@@ -119,7 +121,7 @@ function Home() {
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
-                  className={`relative flex flex-col h-[90vh] rounded-2xl`}
+                  className={`relative flex flex-col h-[90vh] sm-custom:h-[40vh] rounded-2xl`}
                   data-swiper-parallax={"-300"}
                 >
                   <h1
@@ -129,7 +131,7 @@ function Home() {
                     {movies.title}
                   </h1>
                   <h1
-                    className="absolute bottom-0 text-[10px] p-3 text-white bg-black/[0.7] w-full"
+                    className="absolute bottom-0 sm-custom:hidden text-[10px] p-3 text-white bg-black/[0.7] w-full"
                     data-swiper-parallax="-100"
                   >
                     {movies.overview}
@@ -140,7 +142,7 @@ function Home() {
           </Swiper>
           <button
             onClick={fetchRandomMovie}
-            className="hover:scale-105 hover:bg-white hover:text-black absolute top-20 transition ease-in-out duration-500 p-5 min-w-[20vw] min-h-[10vh] bg-black text-center text-white"
+            className="hover:scale-105 sm-custom:scale-75 hover:bg-white hover:text-black shadow-md shadow-red-500 rounded-xl absolute top-20 transition ease-in-out duration-500 p-5 min-w-[20vw] min-h-[10vh] bg-red-700 text-center text-white"
           >
             Clique aqui para escolher um filme para ver hoje...
           </button>

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: rgb(12, 12, 12);
+  background-image: url("https://i.imgur.com/48GZzhO.jpeg");
   overflow-x: hidden;
   width: 100vw;
   margin: 0;
@@ -28,4 +28,27 @@ body {
   image-rendering: pixelated;
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Estiliza a barra inteira */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Estiliza a trilha (fundo) */
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+/* Estiliza o polegar (scroll que se move) */
+::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 2px solid #6b0101;
+}
+
+/* Quando estiver hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }
