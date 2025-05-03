@@ -36,6 +36,22 @@ function MainLayout() {
           className="absolute scale-x-[-1] w-[80px] h-[60px] left-0 bottom-0 z-10"
         />
       </div>
+      <div
+        onClick={() => navigate("/test2")}
+        className="divchoose w-full relative hover:bg-black/[0.7] hover:backdrop-blur-sm  bg-white p-5 shadow-lg shadow-black hover:cursor-pointer hover:scale-110 hover:text-white transition ease-in-out duration-500"
+      >
+        Descobrir qual filme de terror eu me pareço!
+        <img
+          src="https://i.imgur.com/bS0gNFG.gif"
+          alt=""
+          className="absolute w-[80px] h-[60px] right-0 bottom-0 z-10"
+        />
+        <img
+          src="https://i.imgur.com/bS0gNFG.gif"
+          alt=""
+          className="absolute scale-x-[-1] w-[80px] h-[60px] left-0 bottom-0 z-10"
+        />
+      </div>
     </div>
   );
 }
