@@ -30,10 +30,31 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchWithRetry = async (
+      url: string,
+      retries = 3,
+      delay = 1000
+    ): Promise<any> => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
+        return await response.json();
+      } catch (err) {
+        if (retries > 0) {
+          console.warn(`Tentando novamente... (${retries} restantes)`);
+          await new Promise((res) => setTimeout(res, delay));
+          return fetchWithRetry(url, retries - 1, delay);
+        } else {
+          throw err;
+        }
+      }
+    };
+
     const fetchMovies = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch(
+        const response = await fetchWithRetry(
           "https://horrorsitebackend.onrender.com/api/movies"
         );
         const data: DataMovies[] = await response.json();
