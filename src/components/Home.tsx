@@ -57,8 +57,7 @@ function Home() {
         const response = await fetchWithRetry(
           "https://horrorsitebackend.onrender.com/api/movies"
         );
-        const data: DataMovies[] = await response.json();
-        setMovies(data);
+        setMovies(response);
         setIsLoading(false);
       } catch (error) {
         console.error(error);

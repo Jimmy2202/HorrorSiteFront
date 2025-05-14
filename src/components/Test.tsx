@@ -183,15 +183,21 @@ function Test() {
       body: JSON.stringify({ formated_responses }),
     };
 
-    const fetchWithRetry = async (url: string, options: object, retries = 3, delay = 1000): Promise<any> => {
+    const fetchWithRetry = async (
+      url: string,
+      options: object,
+      retries = 3,
+      delay = 1000
+    ): Promise<any> => {
       try {
         const response = await fetch(url, options);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
         return await response.json();
       } catch (err) {
         if (retries > 0) {
           console.warn(`Tentando novamente... (${retries} restantes)`);
-          await new Promise(res => setTimeout(res, delay));
+          await new Promise((res) => setTimeout(res, delay));
           return fetchWithRetry(url, options, retries - 1, delay);
         } else {
           throw err;
@@ -201,9 +207,8 @@ function Test() {
 
     try {
       const data = await fetchWithRetry(url, options);
-      const data_final = await data.json();
-      console.log(data_final.message.content);
-      const data_final2 = JSON.parse(data_final.message.content);
+      console.log(data.message.content);
+      const data_final2 = JSON.parse(data.message.content);
       setVilao(data_final2.vilao);
       setMotivo(data_final2.motivo);
       setIsLoading(false);

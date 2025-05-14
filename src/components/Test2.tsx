@@ -154,9 +154,8 @@ function Test2() {
 
     try {
       const data = await fetchWithRetry(url, options);
-      const data_final = await data.json();
-      console.log(data_final.message.content);
-      const data_final2 = JSON.parse(data_final.message.content);
+      console.log(data.message.content);
+      const data_final2 = JSON.parse(data.message.content);
       setMotivo(data_final2.motivo);
       fetchMovie(data_final2.filme, datamovies);
       setIsLoading(false);
